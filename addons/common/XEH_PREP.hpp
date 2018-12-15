@@ -180,6 +180,7 @@ PREP(toHex);
 PREP(toNumber);
 PREP(unhideUnit);
 PREP(uniqueElements);
+PREP(uniqueItems);
 PREP(unloadPerson);
 PREP(unloadPersonLocal);
 PREP(unmuteUnit);
