@@ -196,6 +196,9 @@ if (_show == 1) then {
             (_display displayCtrl _x) ctrlSetTextColor [_red, _green, _blue, 1.0];
         } forEach _availableSelections;
 
+        // update tourniquet information
+        [_display, _target getVariable [QGVAR(tourniquets), [0,0,0,0,0,0]]] call FUNC(updateTourniquets);
+
         private _lbCtrl = (_display displayCtrl 200);
         lbClear _lbCtrl;
         {
