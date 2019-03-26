@@ -1,4 +1,3 @@
 PREP(addDamageToUnit);
-PREP(dev_watchMedicalStats);
+PREP(adjustPainLevel);
 PREP(setUnconscious);
-PREP(updateTourniquets);
