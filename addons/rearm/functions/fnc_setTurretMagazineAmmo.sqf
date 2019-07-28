@@ -58,7 +58,9 @@ if (!_magLoadedInWeapon) then {
      * To prevent that, we must remove all magazines that would fit into the weapon and then add
      * them back with the magazine-to-be-loaded being the first. */
 
-    private _allowedMagClassesInWeapon = getArray (configFile >> "CfgWeapons" >> _loadedWeapon >> "magazines");
+    // Make sure at least the current ammo type is included to prevent duplication and add results of Vanilla function on top of the existing method
+    private _allowedMagClassesInWeapon = ((getArray (configFile >> "CfgWeapons" >> _loadedWeapon >> "magazines")) + (_vehicle magazinesTurret _turretPath) + [_magazineClass]);
+    _allowedMagClassesInWeapon = _allowedMagClassesInWeapon arrayIntersect _allowedMagClassesInWeapon;
     
     /* Current ammo counts of all allowed magazine classes in weapon.
      * Example: [["8Rnd_82mm_Mo_shells", [8, 8, 2]], ["8Rnd_82mm_Mo_Flare_white", [7]]] */
