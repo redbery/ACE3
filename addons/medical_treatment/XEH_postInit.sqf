@@ -1,6 +1,6 @@
 #include "script_component.hpp"
 
-[QEGVAR(medical,initialized), FUNC(checkItems)] call CBA_fnc_addEventHandler;
+[QEGVAR(medical_status,initialized), FUNC(checkItems)] call CBA_fnc_addEventHandler;
 ["loadout", FUNC(checkItems)] call CBA_fnc_addPlayerEventHandler;
 
 // Handle bodybags and litter on server
@@ -21,3 +21,7 @@ if (isServer) then {
 [QGVAR(actionCheckPulseLocal), FUNC(actionCheckPulseLocal)] call CBA_fnc_addEventHandler;
 [QGVAR(actionCheckBloodPressureLocal), FUNC(actionCheckBloodPressureLocal)] call CBA_fnc_addEventHandler;
 [QGVAR(actionPlaceInBodyBag), FUNC(actionPlaceInBodyBag)] call CBA_fnc_addEventHandler;
+
+// log events
+[QGVAR(addToMedicalLog), FUNC(addToLog)] call CBA_fnc_addEventHandler;
+[QGVAR(addToTriageCard), FUNC(addToTriageCard)] call CBA_fnc_addEventHandler;
