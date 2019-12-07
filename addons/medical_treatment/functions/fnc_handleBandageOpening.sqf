@@ -99,7 +99,7 @@ if (random 1 <= _reopeningChance) then {
             private _exist = false;
             {
                 _x params ["", "_id", "_partN", "_amountOf", "_bleeding", "_damage", "_oldCategory"];
-                if (_id == _classID && {_partN == _bodyPartN && {_oldCategory == _category}}) exitWith {
+                if (_id == _classID && {_partN == _bodyPartN }) exitWith {
                     _x set [3, 0 max (_amountOf - _impact)];
                     _bandagedWounds set [_forEachIndex, _x];
                     _exist = true;
