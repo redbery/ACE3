@@ -19,7 +19,6 @@
 
 params ["_unit", "_deltaT", "_syncValues"];
 
-private _bloodVolume = GET_BLOOD_VOLUME(_unit);
 private _bloodVolumeChange = -_deltaT * GET_BLOOD_LOSS(_unit);
 
 if (!isNil {_unit getVariable QEGVAR(medical,ivBags)}) then {
@@ -30,7 +29,7 @@ if (!isNil {_unit getVariable QEGVAR(medical,ivBags)}) then {
         _x params ["_bagVolumeRemaining", "_type", "_bodyPart"];
 
         if (_tourniquets select _bodyPart == 0) then {
-            private _bagChange = (_deltaT * GVAR(ivFlowRate) * IV_CHANGE_PER_SECOND) min _bagVolumeRemaining; // absolute value of the change in miliLiters
+            private _bagChange = (_deltaT * EGVAR(medical,ivFlowRate) * IV_CHANGE_PER_SECOND) min _bagVolumeRemaining; // absolute value of the change in miliLiters
             _bagVolumeRemaining = _bagVolumeRemaining - _bagChange;
             _bloodVolumeChange = _bloodVolumeChange + (_bagChange / 1000);
         };

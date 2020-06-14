@@ -4,18 +4,18 @@
  * Handles the hear beat sound.
  *
  * Arguments:
- * 0: Heart rate <NUMBER>
+ * None
  *
  * Return Value:
  * None
  *
  * Example:
- * [120] call ace_medical_feedback_fnc_effectHeartBeat
+ * [] call ace_medical_feedback_fnc_effectHeartBeat
  *
  * Public: No
  */
 
-params ["_heartRate"];
+private _heartRate = GET_HEART_RATE(ACE_player);
 
 if (_heartRate == 0) exitWith {
     TRACE_1("Ending heart beat effect - zero",_heartRate);
@@ -28,13 +28,12 @@ private _waitTime  = 60 / _heartRate;
 switch (true) do {
     case (_heartRate > 160): {
         // playSound SND_HEARBEAT_FAST; // Array doesn't blend together well, just play one file consistently
-        playSound "ACE_heartbeat_fast_1";
+        if (isGameFocused) then { playSound "ACE_heartbeat_fast_1"; };
         [FUNC(effectHeartBeat), [], _waitTime] call CBA_fnc_waitAndExecute;
     };
     case (_heartRate < 60): {
-        playSound SND_HEARBEAT_SLOW;
+        if (isGameFocused) then { playSound SND_HEARBEAT_SLOW; };
         [FUNC(effectHeartBeat), [], _waitTime] call CBA_fnc_waitAndExecute;
-
     };
     default {
         TRACE_1("Ending heart beat effect - normal",_heartRate);
